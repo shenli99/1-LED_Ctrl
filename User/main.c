@@ -5,4 +5,9 @@ void main(void)
 {
     UserFanControl_Init();
     UserFanControl_Loop();
+
+    while (1)
+    {
+        
+    }
 }

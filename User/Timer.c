@@ -1,6 +1,6 @@
 #include "Timer.h"
 
-static TimerCallback _timer0Callback = NULL;
+TimerCallback _timer0Callback = NULL;
 
 // 定时器0初始化（1ms中断）
 void TimerInit(void)		//定时器0初始化，2秒@40.000MHz

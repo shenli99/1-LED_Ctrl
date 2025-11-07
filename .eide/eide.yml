@@ -29,8 +29,8 @@ targets:
           asm-compiler: {}
           beforeBuildTasks: []
           c/cpp-compiler:
-            optimization-level: level-8
-            optimization-type: SPEED
+            optimization-level: level-2
+            optimization-type: SIZE
           global:
             ram-mode: SMALL
             rom-mode: LARGE

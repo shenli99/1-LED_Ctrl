@@ -5,18 +5,16 @@ static FanControlState _mode_state = manual_mode;
 static int8 _temp_limit = 26;
 static u8 _fan_state = 0;
 
-static void Handle_Key_Event(void);
-static void Led_Update(void);
-static void Display_Update(void);
-
 void UserFanControl_Init(void)
 {
     // 初始化所有子系统
     TimerInit();
     TaskManager_init();
     LED_Init();
+    LED_Update(LED_STATE_STOP);
     Fan_Init();
     Key_Init();
+    TM1650_Init(TM1650_BRIGHTNESS_8);
 
     // 绑定task更新
     Timer0_SetCallback(TaskUpdate);
@@ -38,7 +36,7 @@ static void Display_Update(void)
 {
     int16 temp;
     u8 w0, w1, w2, w3;
-    u8 bit_mask;
+    u8 bit_mask = 0;
 
     temp = DS18B20_GetTemp();
     if (temp < 0) temp = -temp;
@@ -54,6 +52,8 @@ static void Display_Update(void)
         w2 = _temp_limit % 10;
         w3 = (_temp_limit / 10) % 10;
     }
+
+    TM1650_Set(w0, w1, w2, w3, bit_mask);
 }
 
 static void Led_Update(void)

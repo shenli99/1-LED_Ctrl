@@ -42,7 +42,6 @@ void TaskUpdate(void)
 void TaskExecutor(void)
 {
     u8 i;
-    TaskState state;
     while (1)
     {
         for (i = 0; i < _taskManager.size; i++)
