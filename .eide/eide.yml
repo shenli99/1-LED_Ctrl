@@ -37,6 +37,7 @@ targets:
           linker:
             output-format: elf
             remove-unused: true
+            use-RTX: None
       SDCC:
         options:
           version: 3
