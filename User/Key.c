@@ -47,20 +47,25 @@ void Key_Scan(void)
 }
 
 // 获取按键按下状态函数
-u8 Key_GetPressed()
+Key_res Key_GetPressed()
 {
     if (key1_state == KEY_CAPTURE)
     {
         key1_state = KEY_NONE;
-        return 1;
+        if (key2_state == KEY_CAPTURE)
+        {
+            key2_state = KEY_NONE;
+            return KEY1_AND_KEY2;
+        }
+        return KEY1_ONLY;
     }
     else if (key2_state == KEY_CAPTURE)
     {
         key2_state = KEY_NONE;
-        return 2;
+        return KEY2_ONLY;
     }
     else
     {
-        return 0;
+        return KEY_NONE;
     }
 }
