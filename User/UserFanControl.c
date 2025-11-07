@@ -32,7 +32,7 @@ void UserFanControl_Loop(void)
     TaskExecutor();
 }
 
-static void Display_Update(void)
+void Display_Update(void)
 {
     int16 temp;
     u8 w0, w1, w2, w3;
@@ -56,7 +56,7 @@ static void Display_Update(void)
     TM1650_Set(w0, w1, w2, w3, bit_mask);
 }
 
-static void Led_Update(void)
+void Led_Update(void)
 {
     if (_mode_state == auto_mode)
     {
@@ -71,7 +71,7 @@ static void Led_Update(void)
     }
 }
 
-static void Handle_Key_Event(void)
+void Handle_Key_Event(void)
 {
     Key_res key_state = Key_GetPressed();
     if (key_state == NONE)

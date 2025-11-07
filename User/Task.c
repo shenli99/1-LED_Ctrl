@@ -1,6 +1,6 @@
 #include "Task.h"
 
-static TaskManager _taskManager = {0};
+TaskManager _taskManager = {0};
 
 void TaskManager_init(void)
 {
@@ -35,7 +35,7 @@ void TaskUpdate(void)
     u8 i;
     for (i = 0; i < _taskManager.size; i++)
     {
-        _taskManager.tasks[i].count -=  _taskManager.tasks[i].state & 0x01;
+        if (_taskManager.tasks[i].count > 0) _taskManager.tasks[i].count -=  _taskManager.tasks[i].state & 0x01;
     }
 }
 
@@ -46,11 +46,12 @@ void TaskExecutor(void)
     {
         for (i = 0; i < _taskManager.size; i++)
         {
-            if (_taskManager.tasks[i].state == TASK_RUNNING && _taskManager.tasks[i].count == 0)
+            if (_taskManager.tasks[i].state == TASK_RUNNING && _taskManager.tasks[i].count == 0 && i < _taskManager.size)
             {
                 _taskManager.tasks[i].poll();
                 _taskManager.tasks[i].count = _taskManager.tasks[i].period;
             }
         }
     }
+    i = 0;
 }
