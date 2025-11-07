@@ -86,7 +86,7 @@ int16 DS18B20_GetTemp(void) {
         temp = temp * 0.0625;
         return temp;
     }else{
-        temp = ~(t & 0x07FF);
+        temp = ~t;
         temp = (temp + 1) * 0.0625;
         return temp;
     }
