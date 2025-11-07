@@ -33,7 +33,7 @@ int8 TaskManager_addTask(u16 period, TaskFunc poll)
 void TaskUpdate(void)
 {
     u8 i;
-    for (i = 0; i < _taskManager.size; i++)
+    for (i = 0; i < 5; i++)
     {
         if (_taskManager.tasks[i].count > 0) _taskManager.tasks[i].count -=  _taskManager.tasks[i].state & 0x01;
     }
@@ -44,14 +44,13 @@ void TaskExecutor(void)
     u8 i;
     while (1)
     {
-        for (i = 0; i < _taskManager.size; i++)
+        for (i = 0; i < 5; i++)
         {
-            if (_taskManager.tasks[i].state == TASK_RUNNING && _taskManager.tasks[i].count == 0 && i < _taskManager.size)
+            if (_taskManager.tasks[i].state == TASK_RUNNING && _taskManager.tasks[i].count == 0 && i < 5)
             {
                 _taskManager.tasks[i].poll();
                 _taskManager.tasks[i].count = _taskManager.tasks[i].period;
             }
         }
     }
-    i = 0;
 }

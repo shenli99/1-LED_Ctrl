@@ -1,8 +1,8 @@
 #include "Key.h"
 
 // 按键计时变量
-u8 key1_buffer = 0;
-u8 key2_buffer = 0;
+u8 key1_buffer = 0xFF;
+u8 key2_buffer = 0xFF;
 
 // 按键状态变量
 u8 key1_state = KEY_NONE;
@@ -19,8 +19,8 @@ void Key_Init(void)
     // 使用内部上拉
     P3PU |= 0x0C;  // 设置P3.2和P3.3为上拉模式
     
-    // 注册按键扫描任务
-    // Task_Register(TASK_10MS, Key_Scan);
+    key1_buffer = 0xFF;
+    key2_buffer = 0xFF;
 }
 
 ///按键扫描任务函数
@@ -31,14 +31,16 @@ void Key_Scan(void)
         key1_state = KEY_PRESSED;
     }else if (key1_state == KEY_PRESSED && KEY1 == 1 && (key1_buffer & 0x07) == 0x00)
     {
+        key1_buffer = 0xFF;
         key1_state = KEY_CAPTURE;
     }
 
-    if (KEY2 == 0 && key1_state == KEY_NONE)
+    if (KEY2 == 0 && key2_state == KEY_NONE)
     {
         key2_state = KEY_PRESSED;
-    }else if (key2_state == KEY_PRESSED && KEY1 == 1 && (key2_buffer & 0x07) == 0x00)
+    }else if (key2_state == KEY_PRESSED && KEY2 == 1 && (key2_buffer & 0x07) == 0x00)
     {
+        key2_buffer = 0xFF;
         key2_state = KEY_CAPTURE;
     }
     
@@ -66,6 +68,6 @@ Key_res Key_GetPressed()
     }
     else
     {
-        return KEY_NONE;
+        return NONE;
     }
 }

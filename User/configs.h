@@ -20,8 +20,8 @@ sbit KEY1 = P3^2;
 sbit KEY2 = P3^3;
 
 // LED 引脚定义
-sbit LED_G = P0^0;
-sbit LED_R = P0^1;
+sbit LED_R = P0^0;
+sbit LED_G = P0^1;
 sbit LED_B = P0^2;
 
 #define MAIN_Fosc		24000000L	//定义主时钟
