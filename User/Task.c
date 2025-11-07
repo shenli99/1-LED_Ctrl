@@ -49,15 +49,8 @@ void TaskExecutor(void)
         {
             if (_taskManager.tasks[i].state == TASK_RUNNING && _taskManager.tasks[i].count == 0)
             {
-                state = _taskManager.tasks[i].poll();
-                if (state == TASK_RUNNING)
-                {
-                    _taskManager.tasks[i].count = _taskManager.tasks[i].period;
-                }
-                else if (state == TASK_PAUSE)
-                {
-                    _taskManager.tasks[i].state = TASK_PAUSE;
-                }
+                _taskManager.tasks[i].poll();
+                _taskManager.tasks[i].count = _taskManager.tasks[i].period;
             }
         }
     }

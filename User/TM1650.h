@@ -21,8 +21,9 @@
 // 函数声明
 void TM1650_Init(u8 brightness);
 void TM1650_Write(u8 addr, u8 dat);
-void TM1650_Display(u8 w0, u8 w1, u8 w2, u8 w3, u8 bit_mask);
+void TM1650_Set(u8 w0, u8 w1, u8 w2, u8 w3, u8 bit_mask);
 void TM1650_Clear(void);
 void TM1650_Display_Zero(void);
+void TM1650_Display(void);
 
 #endif /* __TM1650_H__ */

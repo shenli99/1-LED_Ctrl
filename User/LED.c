@@ -31,7 +31,7 @@ void LED_Update(u8 state)
         case LED_STATE_STOP:
             LED_R = 0;
             break;
-        case LED_STATE_RESET:
+        case LED_STATE_AUTO:
             LED_B = 0;
             break;
         default:

@@ -6,7 +6,7 @@ typedef enum {
     TASK_PAUSE = 2
 } TaskState;
 
-typedef  TaskState (*TaskFunc)(void);
+typedef  void (*TaskFunc)(void);
 
 typedef struct {
     u16 count;
@@ -19,3 +19,8 @@ typedef struct {
     u16 size;
     Task tasks[MAX_TASK_NUM];
 } TaskManager;
+
+void TaskManager_init(void);
+int8 TaskManager_addTask(u16 period, TaskFunc poll);
+void TaskUpdate(void);
+void TaskExecutor(void);

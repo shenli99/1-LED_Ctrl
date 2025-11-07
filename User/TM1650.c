@@ -36,14 +36,16 @@ void TM1650_Init(u8 brightness)
 }
 
 // 显示时间 - 格式为 MM:SS
-void TM1650_Display_Time(u8 w0, u8 w1, u8 w2, u8 w3, u8 bit_mask)
+void TM1650_Set(u8 w0, u8 w1, u8 w2, u8 w3, u8 bit_mask)
 {
     TM1650_state[0] = SEG_TAB[w0] | (bit_mask & 0x00) << 7;
     TM1650_state[1] = SEG_TAB[w1] | (bit_mask & 0x01) << 6;
     TM1650_state[2] = SEG_TAB[w2] | (bit_mask & 0x02) << 5;
     TM1650_state[3] = SEG_TAB[w3] | (bit_mask & 0x04) << 4;
-    
-    // 直接写入，移除多余延时
+}
+
+void TM1650_Display(void)
+{
     TM1650_Write(0x68, TM1650_state[0]);
     TM1650_Write(0x6A, TM1650_state[1]);
     TM1650_Write(0x6C, TM1650_state[2]);

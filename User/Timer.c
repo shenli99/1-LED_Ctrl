@@ -28,3 +28,8 @@ void Timer0_ISR(void) interrupt TMR0_VECTOR
         _timer0Callback();
     }
 }
+
+void Timer0_SetCallback(TimerCallback callback)
+{
+    _timer0Callback = callback;
+}

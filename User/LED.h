@@ -6,7 +6,7 @@
 // LED状态定义
 #define LED_STATE_RUN    0
 #define LED_STATE_STOP   1
-#define LED_STATE_RESET  2
+#define LED_STATE_AUTO  2
 
 // 函数声明
 void LED_Init(void);

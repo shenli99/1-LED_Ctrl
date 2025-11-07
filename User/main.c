@@ -1,9 +1,8 @@
-#include "common.h"
+#include "UserFanControl.h"
 
 // 主函数
 void main(void)
 {
-    while(1)
-    {
-    }
+    UserFanControl_Init();
+    UserFanControl_Loop();
 }
