@@ -38,7 +38,8 @@ void Display_Update(void)
     u8 w0, w1, w2, w3;
     u8 bit_mask = 0;
 
-    temp = DS18B20_GetTemp();
+    // temp = DS18B20_GetTemp();
+    temp = 25;
     if (temp < 0) temp = -temp;
 
     w0 = temp % 10;
