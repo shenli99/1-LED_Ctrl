@@ -26,4 +26,6 @@ sbit LED_B = P0^2;
 
 #define MAIN_Fosc		24000000L	//定义主时钟
 
+#define MAX_TASK_NUM		10		//定义最大任务数
+
 #endif // !_CONFIGS_H_

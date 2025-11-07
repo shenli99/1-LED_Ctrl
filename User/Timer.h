@@ -2,9 +2,10 @@
 #define __TIMER_H__
 
 #include "common.h"
-// #include "Task.h"
+
+typedef void (*TimerCallback)(void);
 
 // 函数声明
-void Timer0_Init(void);
+void TimerInit(void);
 
 #endif /* __TIMER_H__ */

@@ -1,8 +1,9 @@
 #include "Timer.h"
 
+static TimerCallback _timer0Callback = NULL;
 
 // 定时器0初始化（1ms中断）
-void Timer0_Init(void)		//定时器0初始化，2秒@40.000MHz
+void TimerInit(void)		//定时器0初始化，2秒@40.000MHz
 {
 	TM0PS = 0x0;			//设置定时器时钟预分频
     AUXR |= 0x80;            //定时器0工作在1T模式
@@ -23,5 +24,7 @@ void Timer0_ISR(void) interrupt TMR0_VECTOR
     // 清除中断标志
     TF0 = 0;
 
-    // Task_1ms_Count();
+    if (_timer0Callback != NULL) {
+        _timer0Callback();
+    }
 }
